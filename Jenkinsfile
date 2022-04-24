@@ -7,7 +7,7 @@ pipeline {
 		stage('Quality Check') {
 			steps {
 				withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonarqube' ) {
-					sh '/usr/local/share/sonar-scanner/bin/sonar-scanner'
+					sh './gradle sonarqube'
 				}
 			}
 		}
