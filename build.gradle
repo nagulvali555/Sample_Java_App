@@ -27,6 +27,6 @@ test {
 
 sonarqube {
 	properties {
-		sonar.host.url 'http://65.0.20.239:9000'
+		property "sonar.sources", "src"
 	}
 }
