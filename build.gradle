@@ -24,3 +24,9 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+sonarqube {
+	properties {
+		sonar.host.url 'http://65.0.20.239:9000'
+	}
+}
