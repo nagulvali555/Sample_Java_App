@@ -27,8 +27,5 @@ test {
 
 sonarqube {
 	properties {
-		property 'sonar.host.url', 'http://65.0.20.239:9000'
-		property 'sonar.sources', 'src'
-		property 'sonar.sourceEncoding', 'UTF-8'
 	}
 }
