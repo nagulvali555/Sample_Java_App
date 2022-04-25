@@ -62,12 +62,11 @@ pipeline {
         sh 'Deploying to staging...'
       }
     }
-
-		post {
-			always {
-				mail bcc: '', body: '${env.JOB_NAME} <br> Build Number: ${env.BUILD_NUMBER} <br> URL de build : ${env.BUILD_URL}', cc: '', from: '', replyTo: '', subject: '', to: 'nagulvali555@gmail.com'
-			}
-		}
-
 	}
+
+	post {
+    always {
+      mail bcc: '', body: '${env.JOB_NAME} <br> Build Number: ${env.BUILD_NUMBER} <br> URL de build : ${env.BUILD_URL}', cc: '', from: '', replyTo: '', subject: '', to: 'nagulvali555@gmail.com'
+    }
+  }
 }
