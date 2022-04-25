@@ -2,6 +2,10 @@ pipeline {
 
 	agent any
 
+	options {
+		buildDiscarder(logRotator(numToKeepStr: '1'))
+	}
+
 	stages {
 
 		stage('Static Code Analysis') {
@@ -28,6 +32,42 @@ pipeline {
 
 			}
 	  }
+
+	  stage("Build") {
+	    steps {
+				sh './gradlew clean build'
+	    }
+	  }
+
+    stage("Test") {
+      steps {
+        sh './gradlew test'
+      }
+    }
+
+    stage("Package docker image") {
+	    steps {
+	      sh 'creating docker image...'
+	    }
+    }
+
+    stage("Pushing docker image") {
+      steps {
+        sh 'pushing docker image to repo'
+      }
+    }
+
+    stage("Deploying to staging") {
+      steps {
+        sh 'Deploying to staging...'
+      }
+    }
+
+		post {
+			always {
+				mail bcc: '', body: '${env.JOB_NAME} <br> Build Number: ${env.BUILD_NUMBER} <br> URL de build : ${env.BUILD_URL}', cc: '', from: '', replyTo: '', subject: '', to: 'nagulvali555@gmail.com'
+			}
+		}
 
 	}
 }
